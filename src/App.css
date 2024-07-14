@@ -1,3 +1,5 @@
+/* src/App.css */
+
 .Team {
   margin-bottom: 20px;
 }
@@ -48,4 +50,15 @@
 
 .Turn {
   margin: 5px 0;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
