@@ -1,0 +1,10 @@
+.score {
+    font-size: 2em;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .animate-score {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  

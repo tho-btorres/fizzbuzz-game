@@ -1,5 +1,3 @@
-// src/Turn.js
-
 import React from "react";
 
 function Turn({ turn }) {
