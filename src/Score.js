@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from "react";
-import "./Score.css";
+import React, { useEffect, useState } from 'react';
+import './Score.css';
 
-function Score({ score }) {
-  const [animatedScore, setAnimatedScore] = useState(score);
-  const [animationClass, setAnimationClass] = useState("");
+function Score({ score, change }) {
+  const [displayScore, setDisplayScore] = useState(score);
+  const [animationClass, setAnimationClass] = useState('');
+  const [symbol, setSymbol] = useState('');
 
   useEffect(() => {
-    if (score !== animatedScore) {
-      setAnimationClass("animate-score");
+    if (change !== 0) {
+      setAnimationClass(change > 0 ? 'score-increase' : 'score-decrease');
+      setSymbol(change > 0 ? '+' : '-');
       setTimeout(() => {
-        setAnimatedScore(score);
-        setAnimationClass("");
-      }, 300);
+        setDisplayScore(score);
+        setAnimationClass('');
+        setSymbol('');
+      }, 500);
     }
-  }, [score, animatedScore]);
+  }, [score, change]);
 
-  return <div className={`score ${animationClass}`}>{animatedScore}</div>;
+  return (
+    <div className={`score ${animationClass}`}>
+      {symbol} {displayScore}
+    </div>
+  );
 }
 
 export default Score;

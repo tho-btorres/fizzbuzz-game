@@ -1,14 +1,16 @@
 import { Layout, Space } from "antd";
-import React, { useState } from "react";
-import Turn from "./Turn";
+
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "./firebase";
+import React, { useState } from "react";
 import Score from "./Score";
+import Turn from "./Turn";
+import { db } from "./firebase";
 
 function Team({ team }) {
   const [answer, setAnswer] = useState("");
   const [currentTurn, setCurrentTurn] = useState(team.turns.length);
   const [score, setScore] = useState(0);
+  const [scoreChange, setScoreChange] = useState(0);
 
   const handleAnswerChange = (e) => {
     setAnswer(e.target.value);
@@ -31,7 +33,13 @@ function Team({ team }) {
     setCurrentTurn(currentTurn + 1);
 
     if (newTurn.correct) {
-      setScore((prevScore) => prevScore + 1);
+      const newScore = score + 3;
+      setScore(newScore);
+      setScoreChange(3);
+    } else {
+      const newScore = score - 1;
+      setScore(newScore);
+      setScoreChange(-1);
     }
   };
 
@@ -47,8 +55,9 @@ function Team({ team }) {
       <Space>
         <h2>{team.name}</h2>
         <h3>Número actual: {currentTurn + 1}</h3>
-        <Score score={score} />
+        <Score score={score} change={scoreChange} />
       </Space>
+
       {team.turns &&
         team.turns.map((turn, index) => <Turn key={index} turn={turn} />)}
       <form onSubmit={handleSubmit}>
