@@ -1,4 +1,4 @@
-// src/Team.js
+import { Layout, Space } from "antd";
 
 import React, { useState } from "react";
 import Turn from "./Turn";
@@ -38,16 +38,20 @@ function Team({ team }) {
   };
 
   return (
-    <div className="Team">
-      <h2>{team.name}</h2>
-      {team.turns.map((turn, index) => (
-        <Turn key={index} turn={turn} />
-      ))}
+    <Layout >
+      <Space>
+        <h2>{team.name}</h2>
+        <h3>Número actual: {currentTurn + 1}</h3>
+      </Space>
       <form onSubmit={handleSubmit}>
         <input type="text" value={answer} onChange={handleAnswerChange} />
         <button type="submit">Submit</button>
       </form>
-    </div>
+      {team.turns.map((turn, index) => (
+        <Turn key={index} turn={turn} />
+      ))}
+      
+    </Layout>
   );
 }
 

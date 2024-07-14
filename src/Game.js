@@ -1,5 +1,4 @@
-// src/Game.js
-
+import { Flex } from "antd";
 import React, { useState, useEffect } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "./firebase";
@@ -24,9 +23,11 @@ function Game() {
   return (
     <div className="Game">
       <h1>FizzBuzz Game</h1>
-      {teams.map((team) => (
-        <Team key={team.id} team={team} />
-      ))}
+      <Flex gap="middle">
+        {teams.map((team) => (
+          <Team key={team.id} team={team} />
+        ))}
+      </Flex>
     </div>
   );
 }
