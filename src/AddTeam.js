@@ -26,7 +26,8 @@ function AddTeam() {
     try {
       await addDoc(collection(db, 'teams'), {
         name: teamName,
-        turns: []  // Inicializa turns como un array vacío
+        turns: [],  // Inicializa turns como un array vacío
+        score: 0    // Inicializa score a 0
       });
       setTeamName('');
       setLoading(false);

@@ -1,16 +1,23 @@
-import { Layout, Space } from "antd";
-
-import { doc, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
-import Score from "./Score";
+import React, { useState, useEffect } from "react";
 import Turn from "./Turn";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
+import Score from "./Score";
+import { Layout, Space } from "antd";
 
 function Team({ team }) {
   const [answer, setAnswer] = useState("");
   const [currentTurn, setCurrentTurn] = useState(team.turns.length);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(team.score || 0); // Initial score from Firestore
   const [scoreChange, setScoreChange] = useState(0);
+
+  useEffect(() => {
+    // Update Firestore whenever the score changes
+    if (team.score !== score) {
+      const teamDocRef = doc(db, "teams", team.id);
+      updateDoc(teamDocRef, { score });
+    }
+  }, [score, team.id, team.score]);
 
   const handleAnswerChange = (e) => {
     setAnswer(e.target.value);
@@ -53,8 +60,9 @@ function Team({ team }) {
   return (
     <Layout>
       <Space>
-        <h2>{team.name}</h2>
         <h3>Número actual: {currentTurn + 1}</h3>
+
+        <h2>{team.name}</h2>
         <Score score={score} change={scoreChange} />
       </Space>
 
