@@ -5,6 +5,7 @@ import Team from "./Team";
 import AddTeam from "./AddTeam";
 import { Layout, Space, Typography } from "antd";
 import DeleteAllTeams from './DeleteAllTeams';
+import ScoreBoard from './ScoreBoard';
 
 function Game() {
   const [teams, setTeams] = useState([]);
@@ -36,6 +37,7 @@ function Game() {
           </Typography.Title>
           <AddTeam />
           <DeleteAllTeams />
+          <ScoreBoard />
         </Space>
         <Space style={{ marginLeft: "30px" }}>
           {teams.map((team) => (

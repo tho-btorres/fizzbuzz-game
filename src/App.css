@@ -62,3 +62,23 @@ button {
 button:disabled {
   cursor: not-allowed;
 }
+
+.ScoreBoard {
+  margin-top: 20px;
+}
+
+.ScoreBoard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ScoreBoard th,
+.ScoreBoard td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.ScoreBoard th {
+  background-color: #f4f4f4;
+}

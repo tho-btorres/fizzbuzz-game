@@ -8,7 +8,6 @@ import Score from "./Score";
 import { Layout, Button, Space, Typography, Radio, Form, Flex } from "antd";
 import { CheckOutlined, UsergroupDeleteOutlined } from "@ant-design/icons";
 
-
 import { Input } from "antd";
 function Team({ team, onDelete }) {
   const [answer, setAnswer] = useState("");
@@ -100,24 +99,27 @@ function Team({ team, onDelete }) {
     <Layout style={{ height: "800px" }}>
       <Space direction="vertical">
         <Flex justify="space-between" align="center">
-          <Typography.Title  level={5} >
-            Equipo: {team.name}
-          </Typography.Title>
-          <Button danger  size="small" icon={<UsergroupDeleteOutlined />} onClick={handleDeleteTeam}>
+          <Typography.Title level={5}>Equipo: {team.name}</Typography.Title>
+          <Button
+            danger
+            size="small"
+            icon={<UsergroupDeleteOutlined />}
+            onClick={handleDeleteTeam}
+          >
             Delete
           </Button>
         </Flex>
         <Flex justify="space-betweem">
           <Space size={"large"}>
-            <Button  size="small" onClick={handleClearTurns}>
+            <Button size="small" onClick={handleClearTurns}>
               Reset
             </Button>
 
             <Score score={score} change={scoreChange} />
           </Space>
         </Flex>
-        <Typography.Text style={{ margin: 0 }}>
-          Número actual: {currentTurn + 1}
+        <Typography.Text style={{ fontSize: "10rem" }}>
+          {currentTurn + 1}
         </Typography.Text>
 
         <Form onFinish={handleSubmit}>
@@ -133,7 +135,12 @@ function Team({ team, onDelete }) {
               />
             </Form.Item>
             <Form.Item>
-              <Button size="small" type="primary" icon={<CheckOutlined />} htmlType="submit">
+              <Button
+                size="small"
+                type="primary"
+                icon={<CheckOutlined />}
+                htmlType="submit"
+              >
                 OK
               </Button>
             </Form.Item>
